@@ -1,8 +1,9 @@
 ## of_vscode.sh
 
-bash script for generating VSCode openFrameworks project with enabled intellisense, tested on:
+Script para generar un proyecto openFrameworks para VSCode en linux con Intellisense habilitado:
+Bash script for generating VSCode openFrameworks project with enabled intellisense, tested on:
 - Debian 9
-- openFrameworks 0.10.0 gcc6
+- openFrameworks 0.10.1 gcc6
 - Microsoft Visual Studio Code IDE 1.27.2
 
 additional requirements are GNU Global and clang, the first for generating the tags, and the second for some static analysis on debugging:
