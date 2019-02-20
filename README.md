@@ -1,59 +1,52 @@
 ## of_vscode.sh
 
-Script para generar un proyecto openFrameworks para VSCode en linux con Intellisense habilitado:
-Bash script for generating VSCode openFrameworks project with enabled intellisense, tested on:
+Script para generar un proyecto openFrameworks para VSCode con Intellisense habilitado en Linux:
 - Debian 9
 - openFrameworks 0.10.1 gcc6
 - Microsoft Visual Studio Code IDE 1.27.2
 
-additional requirements are GNU Global and clang, the first for generating the tags, and the second for some static analysis on debugging:
+Requerimientos adicionales: GNU Global, para generar tags y clang, para analisis estatico en depuracion:
 ```
     sudo apt-get install global clang
 ```
 
-# install visual studio code
-For working with oF and VSCode:
-- you have to install the [.deb package](https://code.visualstudio.com/docs/?dv=linux64_deb) for VSCode, download it and then run `sudo dpkg -i code_*`.
-- in the editor you have to install some extensions. You can do it in the extension section of the sidebar, press `Ctrl+Shift+X` to open it, then search `C/C++` by Microsoft and `C++ Intellisense` by [austin](https://github.com/austin-----/code-gnu-global), and install them.
+# Instalacion:
+- Bajar VSCode  [.deb package](https://code.visualstudio.com/docs/?dv=linux64_deb) e instalar
+`sudo dpkg -i code_*`.
+- Una vez en VSCode: `Ctrl+Shift+X` abre el instaldor de extensiones. Buscar `C/C++ Intellisense` by Microsoft e instalar.
 
-In the preference I recommend enabling `Files: Insert Final Newline' (as all the text/code files in linux should be terminated by a newline) and disabling Telemetry options to avoid sending data to Microsoft ( thanks for the software but still i would prefer not to ).
+# Preferencias:
 
-You can use VSCode with the `code` command. For correctly opening an oF project you have to open the workspace file, so you can do
+Habilitar `Files: Insert Final Newline` (todos los archivos de texto/codigo en linux deben terminar con newline).
+Deshabilitar opciones de Telemetry.
+
+Se puede usar VSCode desde CLI con el comando `code`. Para abrir un proyecto de oF hay que abrir el archivo del workspace file, asi:
 ```console
    code ~/path/to/your/app.code-workspace
 ```
-to compile and run a project from VSCode, press `Ctrl+Shift+B`.
+Para compilar y correr `Ctrl+Shift+B`.
 
-# of_code.sh installation
-(will ask for sudo password)
+# Instalacion del script of_code.sh:
 ```console
     git clone https://github.com/npisanti/of_vscode.git
     cd of_vscode
-    sh install.sh
+    sudo sh install.sh
 ```
-If you move the folder of `of_vscode.sh` after installing it you have to run the installation again.
+Si la carpeta para `of_vscode.sh` cambia despues de la instalacion habra que correrla de nuevo.
 
-# usage
+# Uso:
 ```console
-   of_vscode.sh ~/path/to/your/app
+   of_vscode.sh ~/ruta del proyecto/
 ```
-or
+o
 ```console
-   cd ~/path/to/your/app
+   cd ~/ruta del proyecto/
    of_vscode.sh
 ```
-will generate a project for your app.
+cualquiera de estas dos opciones generara el workspace de VSCode para ese proyecto.
 
-# custom addon include paths
-The script will try to automatically adds all the paths in the `src` and `libs` folders of the addon, if present.
-If an addon include headers outside its folder probably is a better idea to write a `.paths` file with a list of paths to include for that specific addon. This file has to be put in the `paths` folder in the repostitory. The included `.paths` files will give you some clear examples on how to do it. Also pull request for `.paths` files are really appreciated!
+# Addons
+El script intentara agregar automaticamente las rutas en `src` y `libs` de cada addon presente. Si el addon incluye otra ruta tendra que agregarse escribiendo un archivo `.paths` con una lista de las rutas para ese addon especifco en la carpeta `paths`. El archivo `.paths` incluido es un  claro ejemplo.
 
-# custom install
-Optionally you can install it with:
-```
-sh install.sh /absolute/path/to/oF/directory compilername
-```
-If you don't give the absolute path to your oF directory, it defaults to a relative path three folder above the app folder. You cannot specify `compilername` without giving the oF path first, if you don't give anything it uses the default compiler you set in the VSCode preference (search `Intellisense`). Another choice could be `clang-x64` if you use it.
-
-# credits
-This project was ispired by [Roberto Fazio VS Code / oF example](https://github.com/robertofazio/openFrameworks_VisualStudioCode_Example), that motivated me to try to switch from Geany to VS Code.
+# Creditos
+Proyecto original en ingles [npisanti](https://github.com/npisanti/of_vscode), a su vez inspirado por el ejemplo de  [Roberto Fazio VS Code / oF example](https://github.com/robertofazio/openFrameworks_VisualStudioCode_Example).
